@@ -1,5 +1,15 @@
 import { useEffect, useState } from "react";
 import { shuffle } from 'lodash'
+import nodemailer from 'nodemailer'
+
+let transporter = nodemailer.createTransport({
+  host: "smtp.mailtrap.io",
+  port: 2525,
+  auth: {
+    user: "f66e1dedf375de",
+    pass: "16fe2820dcf261"
+  }
+});
 
 type Person =
   | "Rob"
@@ -65,8 +75,21 @@ function generateMatches(): Array<Pair> {
 export default function App() {
   const [matches, setMatches] = useState<Array<Pair>>([]);
   useEffect(() => {
-    if (!matches || matches.length === 0) setMatches(generateMatches());
+    if (!matches || matches.length === 0) {
+      setMatches(generateMatches());
+    }
   }, [matches]);
+  useEffect(() => {
+    if (matches && matches.length > 0) {
+        console.log('sending mail')
+        transporter.sendMail({
+          from: 'markjackson02@gmail.com',
+          to: 'markjackson02@gmail.com',
+          subject: 'Secret Santa',
+          text: JSON.stringify(matches)
+        })
+    }
+  }, [matches])
   if (
     !matches
     || matches.length === 0 
