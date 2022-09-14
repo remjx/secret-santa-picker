@@ -28,13 +28,13 @@ const invalidPairs: Array<Pair> = [
   ["Karaline", "Nick"],
   ["Steven", "Kristina"],
   /* Last year [Giver, Receiver] */
-  ["Rob", "Karaline"],
-  ["Karaline", "Adelle"],
-  ["Nick", "Steven"],
-  ["Steven", "Mark"],
-  ["Kristina", "Rob"],
-  ["Adelle", "Nick"],
-  ["Mark", "Kristina"]
+  ["Rob", "Mark"],
+  ["Adelle", "Kristina"],
+  ["Karaline", "Steven"],
+  ["Nick", "Rob"],
+  ["Kristina", "Adelle"],
+  ["Steven", "Karaline"],
+  ["Mark", "Nick"]
 ];
 
 function generateMatches(): Array<Pair> {
